@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  img, video { max-width: 100%; }
+  html, body { overflow-x: clip; }
+  body { @apply bg-ivory text-espresso font-sans antialiased; }
+  h1, h2, h3, h4 { @apply font-display; }
+  ::selection { background: #B49A70; color: #fff; }
+}
+
+@layer components {
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center gap-2 px-6 py-3 text-[13px] font-medium tracking-wide transition duration-300 disabled:opacity-40 disabled:cursor-not-allowed; }
+  .btn-dark { @apply btn bg-espresso text-ivory hover:bg-walnut; }
+  .btn-light { @apply btn bg-ivory text-espresso hover:bg-beige; }
+  .btn-ghost { @apply btn border border-espresso/30 text-espresso hover:border-espresso hover:bg-espresso hover:text-ivory; }
+  .btn-ghost-light { @apply btn border border-ivory/50 text-ivory hover:bg-ivory hover:text-espresso; }
+  .eyebrow { @apply text-[11px] font-medium uppercase tracking-[0.24em] text-walnut; }
+  .container-x { @apply mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-10 2xl:max-w-[1560px]; }
+  .field { @apply w-full border border-espresso/20 bg-ivory px-4 py-3 text-sm outline-none transition focus:border-walnut; }
+  .chip { @apply inline-flex items-center border border-espresso/20 px-3 py-2 text-xs transition hover:border-espresso; }
+  .chip-on { @apply bg-espresso text-ivory border-espresso; }
+}
+
+/* ---------- 3D hero ---------- */
+.hero3d { perspective: 1500px; }
+.stage3d { transform-style: preserve-3d; will-change: transform; transition: transform .25s ease-out; }
+.ring3d { transform-style: preserve-3d; will-change: transform; }
+.panel3d { position: absolute; left: 50%; top: 50%; backface-visibility: visible; transform-style: preserve-3d; }
+.layer3d { will-change: transform; transition: transform .3s ease-out; }
+@keyframes floaty { 0%,100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+.floaty { animation: floaty 7s ease-in-out infinite; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee { animation: marquee 38s linear infinite; }
+@keyframes drift { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(30px,-20px,0) scale(1.08); } }
+.drift { animation: drift 16s ease-in-out infinite; }
+
+/* 3D tilt product card */
+.tilt-wrap { perspective: 900px; }
+.tilt-card { transform-style: preserve-3d; transition: transform .25s ease-out, box-shadow .3s; will-change: transform; }
+.tilt-card:hover { box-shadow: 0 30px 50px -30px rgba(48,37,31,.45); }
+.tilt-pop { transform: translateZ(30px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .floaty, .marquee, .drift { animation: none; }
+  html { scroll-behavior: auto; }
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
