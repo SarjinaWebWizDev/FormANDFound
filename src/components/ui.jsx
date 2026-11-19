@@ -17,10 +17,10 @@ export const SectionHead = ({ eyebrow, title, to, cta = 'View all', center }) =>
 export const Section = ({ children, className = '', id }) => <section id={id} className={`py-16 md:py-24 ${className}`}><div className="container-x">{children}</div></section>;
 export const PageHeader = ({ eyebrow, title, intro }) => (
   <div className="border-b border-espresso/10 bg-beige/50">
-    <div className="container-x py-14 md:py-20">
-      {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-      <h1 className="max-w-3xl text-5xl leading-[1.02] md:text-7xl">{title}</h1>
-      {intro && <p className="mt-6 max-w-xl text-lg text-espresso/70">{intro}</p>}
+    <div className="container-x py-7 md:py-10">
+      {eyebrow && <p className="eyebrow mb-2">{eyebrow}</p>}
+      <h1 className="max-w-3xl text-4xl leading-[1.05] md:text-5xl">{title}</h1>
+      {intro && <p className="mt-3 max-w-xl text-base text-espresso/70 md:text-lg">{intro}</p>}
     </div>
   </div>
 );

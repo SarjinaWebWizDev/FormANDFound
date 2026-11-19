@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Gift, Truck, Sparkles } from 'lucide-react';
-import Hero3D from '../components/Hero3D';
+import HeroEditorial from '../components/HeroEditorial';
 import ProductCard from '../components/ProductCard';
 import StyleFinder from '../components/StyleFinder';
 import ShopTheRoom from '../components/ShopTheRoom';
@@ -23,7 +23,7 @@ export default function Home() {
   const viewed = recent.map((id) => products.find((p) => p.id === id)).filter(Boolean).slice(0, 4);
   return (
     <>
-      <Hero3D />
+      <HeroEditorial />
       <div className="overflow-hidden border-y border-espresso/10 bg-ivory py-4" aria-hidden>
         <div className="marquee flex w-max gap-12 whitespace-nowrap font-display text-2xl italic text-walnut">{[...MARQUEE, ...MARQUEE, ...MARQUEE, ...MARQUEE].map((m, i) => <span key={i} className="flex items-center gap-12">{m}<i className="h-1.5 w-1.5 rounded-full bg-gold" /></span>)}</div>
       </div>
@@ -73,7 +73,7 @@ export default function Home() {
 
       <Section className="!pt-0">
         <SectionHead eyebrow="Shop by room" title="Start with the room." to="/design-your-space" cta="Design your space" />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">{ROOMS.map((r) => (<Link key={r.id} to={`/design-your-space?room=${r.id}`} className="group relative block aspect-[3/4] overflow-hidden bg-beige"><SafeImage src={r.image} alt={r.name} className="h-full w-full transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 flex items-end bg-gradient-to-t from-espresso/70 to-transparent p-4 text-ivory"><h3 className="text-2xl">{r.name}</h3></div></Link>))}</div>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">{ROOMS.map((r) => (<Link key={r.id} to={`/room/${r.id}`} className="group relative block aspect-[3/4] overflow-hidden bg-beige"><SafeImage src={r.image} alt={r.name} className="h-full w-full transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 flex items-end bg-gradient-to-t from-espresso/70 to-transparent p-4 text-ivory"><h3 className="text-2xl">{r.name}</h3></div></Link>))}</div>
       </Section>
 
       {/* story */}

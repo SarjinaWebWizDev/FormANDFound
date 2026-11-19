@@ -5,6 +5,7 @@ import Shop from './pages/Shop';
 import ProductPage from './pages/ProductPage';
 import Collections, { CollectionPage } from './pages/Collections';
 import DesignYourSpace from './pages/DesignYourSpace';
+import RoomGuide from './pages/RoomGuide';
 import Offers from './pages/Offers';
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="collections" element={<Collections />} />
         <Route path="collections/:slug" element={<CollectionPage />} />
         <Route path="design-your-space" element={<DesignYourSpace />} />
+        <Route path="room/:id" element={<RoomGuide />} />
         <Route path="offers" element={<Offers />} />
         <Route path="cart" element={<Cart />} />
         <Route path="wishlist" element={<Wishlist />} />

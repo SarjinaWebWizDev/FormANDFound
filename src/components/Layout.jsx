@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Heart, Menu, Minus, Plus, Scale, Search, ShoppingBag, X } from 'lucide-react';
-import AnnouncementBar from './AnnouncementBar';
-import Newsletter from './Newsletter';
+import Footer from './Footer';
 import CouponBox from './CouponBox';
 import SafeImage from './SafeImage';
 import { NAV } from '../data/site';
@@ -92,36 +91,27 @@ export default function Layout() {
   const link = (on) => `whitespace-nowrap border-b pb-1 text-[13px] tracking-wide transition hover:text-walnut ${on ? 'border-walnut text-walnut' : 'border-transparent'}`;
   return (
     <div className="flex min-h-screen flex-col">
-      <AnnouncementBar />
-      <header className="sticky top-0 z-40 border-b border-espresso/10 bg-ivory/90 backdrop-blur">
+      <motion.header initial={{ opacity: 0, y: -24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="sticky top-0 z-40 border-b border-espresso/10 bg-ivory/90 backdrop-blur">
         <div className="container-x flex h-16 items-center justify-between gap-1 !px-3 sm:!px-5 md:!px-10">
           <button className="-ml-2 grid h-11 w-11 place-items-center lg:hidden" aria-label="Open menu" onClick={() => setMenu(true)}><Menu /></button>
           <Link to="/" className="whitespace-nowrap font-display text-[1.02rem] font-semibold tracking-[0.08em] min-[380px]:text-xl min-[380px]:tracking-[0.12em] sm:text-2xl sm:tracking-[0.18em] lg:text-[1.7rem]">FORM <span className="text-gold">&amp;</span> FOUND</Link>
+          <nav className="hidden items-center gap-5 xl:flex 2xl:gap-7" aria-label="Main">{NAV.map((n) => <Link key={n.label} to={n.to} aria-current={isActive(n.to) ? 'page' : undefined} className={link(isActive(n.to))}>{n.label}</Link>)}</nav>
           <div className="-mr-2 flex items-center sm:gap-1">
             <button aria-label="Search" className="grid h-11 w-10 place-items-center sm:w-11" onClick={() => setSearch(true)}><Search size={19} /></button>
             <Link to="/wishlist" aria-label="Wishlist" className="relative grid h-11 w-10 place-items-center sm:w-11"><Heart size={19} />{wishlist.length > 0 && <span className="absolute right-0 top-1.5 grid h-4 w-4 place-items-center rounded-full bg-cherry text-[9px] text-white">{wishlist.length}</span>}</Link>
             <button aria-label="Open cart" className="relative grid h-11 w-10 place-items-center sm:w-11" onClick={() => setDrawer(true)}><ShoppingBag size={19} />{calc.count > 0 && <span className="absolute right-0 top-1.5 grid h-4 w-4 place-items-center rounded-full bg-espresso text-[9px] text-ivory">{calc.count}</span>}</button>
           </div>
         </div>
-        <nav className="hidden border-t border-espresso/10 lg:block" aria-label="Main"><div className="container-x flex justify-center gap-5 py-2.5 xl:gap-8">{NAV.map((n) => <Link key={n.label} to={n.to} aria-current={isActive(n.to) ? 'page' : undefined} className={link(isActive(n.to))}>{n.label}</Link>)}</div></nav>
-      </header>
+        <nav className="hidden border-t border-espresso/10 lg:block xl:hidden" aria-label="Main"><div className="container-x flex justify-center gap-5 py-2.5 xl:gap-8">{NAV.map((n) => <Link key={n.label} to={n.to} aria-current={isActive(n.to) ? 'page' : undefined} className={link(isActive(n.to))}>{n.label}</Link>)}</div></nav>
+      </motion.header>
       <AnimatePresence>{menu && (
         <motion.div className="fixed inset-0 z-[65] bg-ivory" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <div className="container-x pt-5"><div className="flex justify-end"><button aria-label="Close menu" className="grid h-11 w-11 place-items-center" onClick={() => setMenu(false)}><X /></button></div>
             <ul className="mt-4 space-y-1 overflow-y-auto pb-10">{NAV.map((n) => <li key={n.label}><Link to={n.to} className="block py-2 font-display text-[clamp(1.9rem,8vw,2.6rem)]">{n.label}</Link></li>)}<li><Link to="/offers" className="block py-2 font-display text-[clamp(1.9rem,8vw,2.6rem)] text-cherry">Offers</Link></li></ul></div>
         </motion.div>)}</AnimatePresence>
       {search && <SearchOverlay onClose={() => setSearch(false)} />}
-      <main className="flex-1"><Outlet /></main>
-      <Newsletter />
-      <footer className="bg-espresso text-ivory/80">
-        <div className="container-x grid gap-10 border-t border-ivory/10 py-14 sm:grid-cols-2 lg:grid-cols-4 [&_a]:inline-block [&_a]:py-1.5">
-          <div><p className="font-display text-2xl tracking-[0.18em] text-ivory">FORM &amp; FOUND</p><p className="mt-3 text-sm">Furniture, lighting and objects for considered homes.</p></div>
-          <div><p className="eyebrow !text-gold">Shop</p><ul className="mt-3 space-y-2 text-sm">{NAV.slice(1, 6).map((n) => <li key={n.label}><Link className="hover:text-ivory" to={n.to}>{n.label}</Link></li>)}</ul></div>
-          <div><p className="eyebrow !text-gold">Explore</p><ul className="mt-3 space-y-2 text-sm"><li><Link to="/offers">Offers</Link></li><li><Link to="/journal">Journal</Link></li><li><Link to="/about">About</Link></li><li><Link to="/track-order">Track an order</Link></li><li><Link to="/compare">Compare</Link></li></ul></div>
-          <div><p className="eyebrow !text-gold">Help</p><ul className="mt-3 space-y-2 text-sm"><li><Link to="/faqs">FAQs</Link></li><li><Link to="/contact">Contact</Link></li><li><Link to="/shipping-returns">Shipping &amp; Returns</Link></li><li><Link to="/privacy">Privacy</Link></li><li><Link to="/terms">Terms</Link></li></ul></div>
-        </div>
-        <p className="border-t border-ivory/10 py-5 text-center text-xs text-ivory/50">© 2026 FORM &amp; FOUND. Demo storefront — checkout, payment and tracking are simulated.</p>
-      </footer>
+      <main className="flex-1"><motion.div key={loc.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.45, ease: 'easeOut' }}><Outlet /></motion.div></main>
+      <Footer />
       <CartDrawer /><CompareBar />
       <AnimatePresence>{toast && <motion.div key={toast.k} role="status" className="fixed inset-x-4 bottom-6 z-[80] sm:inset-x-auto sm:right-6 bg-espresso px-5 py-3 text-sm text-ivory shadow-xl" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>{toast.m}</motion.div>}</AnimatePresence>
     </div>

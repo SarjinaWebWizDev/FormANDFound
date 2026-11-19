@@ -38,7 +38,7 @@ export default function Offers() {
       <Section id="sets">
         <SectionHead eyebrow="Curated room sets" title="Complete a room, save on the set." />
         <p className="-mt-6 mb-10 max-w-xl text-sm text-espresso/70">Add every piece of a set and save {SET_SAVING_PCT}% automatically — or 12% with ROOM12 (the code replaces the {SET_SAVING_PCT}%, they do not add up).</p>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 md:[&>article:last-child:nth-child(odd)]:col-span-2">
           {BUNDLES.map((b) => { const base = bundlePrice(b); return (
             <article key={b.id} className="border border-espresso/15 bg-ivory"><div className="grid sm:grid-cols-[200px_minmax(0,1fr)] md:grid-cols-1 lg:grid-cols-[200px_minmax(0,1fr)]"><SafeImage src={b.image} alt={b.name} className="aspect-[4/3] h-full w-full sm:aspect-auto md:aspect-[4/3] lg:aspect-auto" />
               <div className="p-5"><h3 className="text-3xl">{b.name}</h3><p className="mt-1 text-sm text-espresso/70">{b.blurb}</p>
