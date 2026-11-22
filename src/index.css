@@ -105,6 +105,15 @@
 .fchip-on { background: #4B563C !important; border-color: #4B563C !important; box-shadow: 0 8px 18px -10px rgba(63,74,51,.8); }
 @media (prefers-reduced-motion: reduce) { .btn-dark, .btn-light, .btn-ghost, .btn-ghost-light { transition: none; } .btn-dark::after, .btn-light::after, .btn-ghost::after, .btn-ghost-light::after { display: none; } }
 
-/* Shape: straight edge with a 2px corner (gallery look) for all standard buttons and filter chips. Hero buttons keep their own shape. */
+/* Shape: straight edge with a 2px corner (gallery look) for standard buttons and filter chips. Hero buttons (.btn-royal/.btn-glass) keep their curved pill shape. */
 .btn-dark, .btn-light, .btn-ghost, .btn-ghost-light { border-radius: 2px; }
-.fchip { border-radius: 2px; }
+.fchip, .chip { border-radius: 2px; }
+
+/* Hero 3D: spinning coin badge and the tilting button's glare */
+.coin3d { animation: coin 9s ease-in-out infinite; transform-style: preserve-3d; box-shadow: 0 20px 40px -14px rgba(0,0,0,.6), inset 0 0 0 4px rgba(180,154,112,.25); }
+@keyframes coin { 0%,100% { transform: perspective(600px) rotateY(-24deg) rotateX(6deg) translateY(0); } 50% { transform: perspective(600px) rotateY(24deg) rotateX(-6deg) translateY(-12px); } }
+.btn3d { transform-style: preserve-3d; transition: transform .25s ease-out, box-shadow .5s; }
+.btn3d .chip { transform: translateZ(26px); }
+.btn3d::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(120px circle at var(--gx, 50%) 0%, rgba(255,248,225,.35), transparent 70%); opacity: 0; transition: opacity .3s; }
+.btn3d:hover::after { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .coin3d { animation: none; } }

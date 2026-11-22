@@ -2,14 +2,13 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Gift, Truck, Sparkles } from 'lucide-react';
 import HeroEditorial from '../components/HeroEditorial';
 import ProductCard from '../components/ProductCard';
-import StyleFinder from '../components/StyleFinder';
+import JournalFeature from '../components/JournalFeature';
 import ShopTheRoom from '../components/ShopTheRoom';
 import SafeImage from '../components/SafeImage';
 import { Reveal, Section, SectionHead } from '../components/ui';
 import { products, CATEGORIES } from '../data/products';
 import { collections } from '../data/collections';
 import { ROOMS, CATEGORY_IMAGES, BANNERS, STORY_IMAGES } from '../data/site';
-import { articles } from '../data/content';
 import { BUNDLES, bundlePrice } from '../data/offers';
 import { useStore } from '../context/StoreContext';
 import { formatINR } from '../utils/helpers';
@@ -39,8 +38,8 @@ export default function Home() {
       {/* categories */}
       <Section className="!pt-0">
         <SectionHead eyebrow="Shop by category" title="Everything for the room." to="/shop" />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {CATEGORIES.map((c, i) => (<Reveal key={c} delay={i * 0.05}><Link to={`/shop?category=${encodeURIComponent(c)}`} className="group relative block aspect-[3/4] overflow-hidden bg-beige"><SafeImage src={CATEGORY_IMAGES[c]} alt={c} className="h-full w-full transition duration-700 group-hover:scale-105" /><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/70 to-transparent p-4 pt-16 text-ivory"><h3 className="text-xl leading-tight sm:text-2xl">{c}</h3></div></Link></Reveal>))}
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-6 sm:gap-4 lg:grid-cols-5">
+          {CATEGORIES.map((c, i) => (<Reveal key={c} delay={i * 0.05} className={`${i === CATEGORIES.length - 1 && CATEGORIES.length % 2 ? 'col-span-2' : ''} ${i < 3 ? 'sm:col-span-2' : 'sm:col-span-3'} lg:col-span-1`}><Link to={`/shop?category=${encodeURIComponent(c)}`} className={`group relative block overflow-hidden bg-beige ${i === CATEGORIES.length - 1 && CATEGORIES.length % 2 ? 'aspect-[16/9]' : 'aspect-[4/5]'} sm:aspect-[4/5] lg:aspect-[3/4]`}><SafeImage src={CATEGORY_IMAGES[c]} alt={c} className="h-full w-full transition duration-700 group-hover:scale-105" /><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/70 to-transparent p-4 pt-16 text-ivory"><h3 className="text-xl leading-tight sm:text-2xl">{c}</h3></div></Link></Reveal>))}
         </div>
       </Section>
 
@@ -69,11 +68,9 @@ export default function Home() {
           <Link key={c.slug} to={`/collections/${c.slug}`} className="group relative w-[78vw] shrink-0 snap-start sm:w-[360px]"><div className="aspect-[4/5] overflow-hidden bg-beige"><SafeImage src={c.image} alt={c.name} className="h-full w-full transition duration-700 group-hover:scale-105" /></div><p className="eyebrow mt-4">{c.eyebrow}</p><h3 className="text-3xl">{c.name}</h3><p className="text-sm text-espresso/60">{c.caption}</p></Link>))}</div>
       </Section>
 
-      <Section className="!pt-0"><StyleFinder /></Section>
-
       <Section className="!pt-0">
         <SectionHead eyebrow="Shop by room" title="Start with the room." to="/design-your-space" cta="Design your space" />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">{ROOMS.map((r) => (<Link key={r.id} to={`/room/${r.id}`} className="group relative block aspect-[3/4] overflow-hidden bg-beige"><SafeImage src={r.image} alt={r.name} className="h-full w-full transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 flex items-end bg-gradient-to-t from-espresso/70 to-transparent p-4 text-ivory"><h3 className="text-2xl">{r.name}</h3></div></Link>))}</div>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">{ROOMS.map((r) => (<Link key={r.id} to={`/room/${r.id}`} className="group relative block aspect-[3/4] overflow-hidden bg-beige"><SafeImage src={r.tile || r.image} alt={r.name} className="h-full w-full transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 flex items-end bg-gradient-to-t from-espresso/70 to-transparent p-4 text-ivory"><h3 className="text-2xl">{r.name}</h3></div></Link>))}</div>
       </Section>
 
       {/* story */}
@@ -85,7 +82,7 @@ export default function Home() {
 
       {viewed.length > 0 && <Section className="!pt-0"><SectionHead eyebrow="Pick up where you left off" title="Recently viewed." /><div className="grid grid-cols-2 gap-5 lg:grid-cols-4">{viewed.map((p) => <ProductCard key={p.id} p={p} />)}</div></Section>}
 
-      <Section className="!pt-0"><SectionHead eyebrow="Journal" title="Ideas for the home." to="/journal" /><div className="grid gap-6 md:grid-cols-3">{articles.slice(0, 3).map((a) => (<Link key={a.slug} to={`/journal/${a.slug}`} className="group block"><div className="aspect-[4/3] overflow-hidden bg-beige"><SafeImage src={a.image} alt={a.title} className="h-full w-full transition duration-700 group-hover:scale-105" /></div><p className="eyebrow mt-4">{a.category}</p><h3 className="text-2xl">{a.title}</h3></Link>))}</div></Section>
+      <JournalFeature />
     </>
   );
 }

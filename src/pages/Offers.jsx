@@ -28,7 +28,7 @@ export default function Offers() {
               <p className="eyebrow">Offer {LETTER[id]}</p><h2 className="mt-2 text-3xl">{p.title}</h2><p className="mt-2">{p.summary}</p>
               {p.code && <button onClick={() => copy(p.code)} className="mt-4 inline-flex items-center gap-2 border border-dashed border-walnut px-3 py-1.5 text-sm tracking-widest text-walnut">{copied === p.code ? <Check size={14} /> : <Copy size={14} />}{p.code}</button>}
               <p className="mt-4 text-xs text-espresso/60">{p.terms}</p>
-              <p className="mt-2 text-xs">{live ? <span className="text-moss">Active{p.endsAt ? ` until ${new Date(p.endsAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}` : ''}</span> : <span className="text-cherry">Not currently active</span>}</p>
+              <p className="mt-2 text-xs">{live ? <span className="text-moss">Active{p.endsAt ? ` until ${new Date(p.endsAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}` : ''}</span> : <span className="text-cherry">Not currently active</span>}</p>
             </article>); })}
         </div>
       </Section>

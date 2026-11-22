@@ -233,10 +233,11 @@ const round100 = (n) => Math.round(n / 100) * 100;
 
 export const products = rows.map((r, i) => {
   const [slug, name, base, category, image, kind, material, dimensions, rooms, styles, tones, description, ex] = r;
-  const price = ex.sale ? round100(base * (1 - ex.sale / 100)) : base;
+  const sale = ex.sale ?? ((i % 4 === 1 && !ex.madeToOrder) ? 10 : (i % 7 === 3 ? 15 : (i % 11 === 5 ? 20 : 0)));
+  const price = sale ? round100(base * (1 - sale / 100)) : base;
   const variants = ex.variants || mk(kind, price);
   return {
-    id: `ff-${String(i + 1).padStart(3, '0')}`, slug, name, price, mrp: ex.sale ? base : null, salePct: ex.sale || 0,
+    id: `ff-${String(i + 1).padStart(3, '0')}`, slug, name, price, mrp: sale ? base : null, salePct: sale,
     category, image: img(image), material, dimensions, rooms, styles, tones, description,
     variants, care: CARE[kind === 'light' ? 'light' : kind] || CARE.wood,
     bestseller: !!ex.bestseller, isNew: !!ex.isNew,

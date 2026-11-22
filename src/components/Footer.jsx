@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, Loader2, Mail, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Loader2, Mail } from 'lucide-react';
 import { NAV } from '../data/site';
 import { load, save } from '../utils/helpers';
 
@@ -13,7 +13,7 @@ const DISCOVER = [['Our Story', '/about'], ['The Journal', '/journal'], ['Offers
 const SUPPORT = [['FAQs', '/faqs'], ['Contact Us', '/contact'], ['Shipping & Returns', '/shipping-returns'], ['Privacy Policy', '/privacy'], ['Terms & Conditions', '/terms']];
 
 const FootLink = ({ to, children }) => (
-  <Link to={to} className="group inline-flex items-center gap-2 py-1.5 text-[15px] text-ivory/85 transition-colors hover:text-ivory focus-visible:text-ivory">
+  <Link to={to} className="group inline-flex items-center gap-2 py-1 text-sm sm:py-1.5 sm:text-[15px] text-ivory/85 transition-colors hover:text-ivory focus-visible:text-ivory">
     <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-300 group-hover:bg-[length:100%_1px] group-focus-visible:bg-[length:100%_1px]">{children}</span>
     <ArrowRight size={14} aria-hidden="true" className="shrink-0 -translate-x-1 text-gold opacity-40 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
   </Link>
@@ -22,7 +22,7 @@ const FootLink = ({ to, children }) => (
 const Col = ({ title, items, last }) => (
   <nav aria-label={title} className={`min-w-0 ${last ? '' : ''} lg:border-l lg:border-gold/25 lg:pl-10`}>
     <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-gold">{title}</p>
-    <ul className="mt-4 space-y-0.5">{items.map(([label, to]) => <li key={label}><FootLink to={to}>{label}</FootLink></li>)}</ul>
+    <ul className="mt-2 space-y-0 sm:mt-4">{items.map(([label, to]) => <li key={label}><FootLink to={to}>{label}</FootLink></li>)}</ul>
   </nav>
 );
 
@@ -63,29 +63,29 @@ function Newsletter() {
 export default function Footer() {
   return (
     <footer className="text-ivory">
-      <section aria-labelledby="journal-h" className="relative isolate overflow-hidden bg-espresso">
+      <section aria-labelledby="nl-h" className="relative isolate overflow-hidden bg-espresso">
         {/* Photo is mirrored so the sofa sits on the right, under the form, as in the reference. */}
         <img src="/images/footer-living-room.jpg" alt="" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full -scale-x-100 object-cover object-[30%_75%] sm:object-[50%_70%]" />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-espresso/70" />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-espresso/90 via-espresso/45 to-espresso/10 max-sm:from-espresso/70 max-sm:to-espresso/40" />
-        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-b from-transparent to-espresso" />
-        <div className="container-x grid items-center gap-10 pb-28 pt-16 sm:pt-20 md:pb-36 md:pt-28 lg:grid-cols-2 lg:gap-16">
+        <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-b from-transparent to-espresso" />
+        <div className="container-x grid grid-cols-[minmax(0,1fr)] items-center gap-6 pb-14 pt-12 sm:gap-8 sm:pb-20 sm:pt-16 md:pb-24 md:pt-20 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.3em] text-gold">The journal <span aria-hidden="true" className="h-px w-12 bg-gold/60" /></p>
-            <h2 id="journal-h" className="mt-4 text-[clamp(2.2rem,5.4vw,4rem)] leading-[1.05] text-ivory">Notes on considered living.</h2>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-ivory/85">Discover new collections, thoughtful interiors and design inspiration for modern homes.</p>
-            <p className="mt-6 flex items-center gap-3 font-display text-xl italic text-ivory/80"><Sparkles size={18} aria-hidden="true" className="text-gold" /> A considered note, delivered occasionally.</p>
+            <p className="flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.3em] text-gold">Stay in touch</p>
+            <h2 id="nl-h" className="mt-4 text-[clamp(1.9rem,5vw,3.6rem)] leading-[1.05] text-ivory">Get the new edit first.</h2>
+            <p className="mt-3 max-w-md text-base leading-relaxed text-ivory/85 sm:mt-5 sm:text-lg">New arrivals, room ideas and offers, sent occasionally.</p>
+            <ul className="mt-5 flex flex-wrap gap-2 text-xs text-ivory/90">{['10% off your first order (FIRST10)', 'New arrivals first', 'Room styling ideas'].map((t) => <li key={t} className="flex items-center gap-1.5 border border-gold/50 bg-espresso/40 px-3 py-1.5 backdrop-blur-sm"><Check size={12} aria-hidden="true" className="text-gold" />{t}</li>)}</ul>
           </div>
           <Newsletter />
         </div>
       </section>
 
       <div className="bg-espresso">
-        <div className="container-x grid gap-x-6 gap-y-10 py-12 sm:grid-cols-2 md:py-14 lg:grid-cols-[1.15fr_1fr_1fr_1fr] lg:gap-x-10">
-          <div className="min-w-0 sm:col-span-2 lg:col-span-1">
+        <div className="container-x grid grid-cols-2 gap-x-4 gap-y-8 py-9 sm:gap-x-6 sm:py-12 md:py-14 sm:grid-cols-3 lg:grid-cols-[1.15fr_1fr_1fr_1fr] lg:gap-x-10">
+          <div className="col-span-2 min-w-0 sm:col-span-3 lg:col-span-1">
             <Link to="/" className="inline-block font-display text-[1.7rem] font-medium tracking-[0.2em] text-ivory sm:text-3xl">FORM &amp; FOUND</Link>
             <span aria-hidden="true" className="mt-3 block h-px w-24 bg-gold/70" />
-            <p className="mt-6 font-display text-xl italic leading-snug text-ivory/85">Objects with purpose.<br />Spaces with character.</p>
+            <p className="mt-4 font-display text-lg italic leading-snug sm:mt-6 sm:text-xl text-ivory/85">Objects with purpose.<br />Spaces with character.</p>
             {SOCIALS.length > 0 && <ul className="mt-6 flex gap-3">{SOCIALS.map((s) => <li key={s.label}><a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="grid h-11 w-11 place-items-center rounded-full border border-ivory/50 text-ivory transition hover:border-gold hover:text-gold">{s.icon}</a></li>)}</ul>}
           </div>
           <Col title="Shop" items={SHOP.map((s) => [s.label, s.to])} />
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-gold/40">
           <div className="container-x flex flex-col gap-3 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-ivory/75">© 2026 FORM &amp; FOUND. All rights reserved.</p>
+            <p className="text-ivory/75">© FORM &amp; FOUND. All rights reserved.</p>
             <p className="font-display text-base italic text-ivory/75 sm:border-l sm:border-gold/60 sm:pl-6">Designed for considered living.</p>
           </div>
         </div>

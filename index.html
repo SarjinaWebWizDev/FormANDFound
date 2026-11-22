@@ -3,22 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-      /* Show the same layout as Chrome "Desktop site" (980px wide) on phones, scaled to fit the screen width. */
-      (function () {
-        var W = 980, m = document.querySelector('meta[name="viewport"]');
-        function fit() {
-          var a = Math.min(screen.width, screen.height), b = Math.max(screen.width, screen.height);
-          var land = window.matchMedia('(orientation: landscape)').matches;
-          var sw = land ? b : a;
-          if (sw < W) { var s = (sw / W).toFixed(4); m.setAttribute('content', 'width=' + W + ', initial-scale=' + s + ', minimum-scale=' + s + ', maximum-scale=5'); }
-          else m.setAttribute('content', 'width=device-width, initial-scale=1.0');
-        }
-        fit(); window.addEventListener('orientationchange', function () { setTimeout(fit, 300); });
-      })();
-    </script>
     <title>FORM & FOUND — Furniture, lighting and objects for considered homes</title>
     <meta name="description" content="Furniture, lighting, office accessories, planters and everyday objects, selected for spaces that feel like you." />
+    <link rel="preload" as="image" href="/images/hero-warm-living.jpg" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />

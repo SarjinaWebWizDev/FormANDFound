@@ -1,13 +1,13 @@
 import { img } from './products';
 
 export const articles = [
-  { slug: 'how-to-choose-a-sofa', title: 'How to choose a sofa you will keep', category: 'Guide', date: '12 Oct 2026', image: img('lifestyle-curved-sofa-room'), excerpt: 'Depth, fabric and frame: three things to check before you fall for a shape.',
+  { slug: 'how-to-choose-a-sofa', title: 'How to choose a sofa you will keep', category: 'Guide', date: '12 Oct', image: img('lifestyle-curved-sofa-room'), excerpt: 'Depth, fabric and frame: three things to check before you fall for a shape.',
     body: ['Start with how you sit. A deep seat suits lounging, a firm, upright one suits conversation. Sit on a sofa for a few minutes before deciding, if you can.', 'Fabric matters as much as shape. Bouclé and linen blends feel soft and hide small marks, while tight weaves are easier to clean. Ask for a swatch and look at it in your own light.', 'Finally, measure the room and the doorway. A sofa should leave space to walk around it and a clear path to get it in.'] },
-  { slug: 'layering-light', title: 'Layering light in a living room', category: 'Lighting', date: '4 Oct 2026', image: img('lifestyle-wave-sconce-lounge'), excerpt: 'Floor, table and wall lights at different heights make a room feel calm.',
+  { slug: 'layering-light', title: 'Layering light in a living room', category: 'Lighting', date: '4 Oct', image: img('lifestyle-wave-sconce-lounge'), excerpt: 'Floor, table and wall lights at different heights make a room feel calm.',
     body: ['One ceiling light flattens a room. Add lamps at different heights and the space gains depth.', 'Aim for three sources: a floor lamp near a seat, a table lamp on a side table and a wall or pendant light. Keep bulbs warm, around 2700K.', 'Use dimmers where you can. The same room can be bright in the morning and soft in the evening.'] },
-  { slug: 'a-colour-that-means-it', title: 'A colour that means it: using red at home', category: 'Colour', date: '25 Sep 2026', image: img('lifestyle-cherry-edit-room'), excerpt: 'One glossy red piece can anchor a neutral room. Here is how to keep it balanced.',
+  { slug: 'a-colour-that-means-it', title: 'A colour that means it: using red at home', category: 'Colour', date: '25 Sep', image: img('lifestyle-cherry-edit-room'), excerpt: 'One glossy red piece can anchor a neutral room. Here is how to keep it balanced.',
     body: ['Pick one hero piece, such as a chair, a lamp or a side table, and let the rest of the room stay quiet.', 'Repeat the red once or twice in smaller ways, like a vase or a rug pattern, so the eye travels around the room.', 'Warm woods, travertine and ivory walls all sit well next to a deep, cherry red.'] },
-  { slug: 'making-a-desk-work', title: 'Making a small desk work harder', category: 'Workspace', date: '14 Sep 2026', image: img('lifestyle-walnut-desk-studio'), excerpt: 'Light, storage and one good chair beat a bigger desk.',
+  { slug: 'making-a-desk-work', title: 'Making a small desk work harder', category: 'Workspace', date: '14 Sep', image: img('lifestyle-walnut-desk-studio'), excerpt: 'Light, storage and one good chair beat a bigger desk.',
     body: ['Place the desk where it gets daylight, with the screen at right angles to the window to reduce glare.', 'A small organiser and a tray keep daily tools at hand and clear the surface.', 'Add a plant or a lamp you like looking at. A desk you enjoy is a desk you use.'] },
 ];
 export const getArticle = (s) => articles.find((a) => a.slug === s);

@@ -12,9 +12,9 @@ export const NAV = [
 ];
 
 export const ROOMS = [
-  { id: 'living', name: 'Living Room', image: img('room-living-room'), blurb: 'Sofas, tables, lamps and rugs for the room you gather in.', slots: ['Furniture', 'Lighting', 'Everyday Objects', 'Planters'], budget: 250000 },
-  { id: 'bedroom', name: 'Bedroom', image: img('room-bedroom'), blurb: 'Quiet textures, soft light and a place to put things down.', slots: ['Furniture', 'Lighting', 'Everyday Objects'], budget: 120000 },
-  { id: 'dining', name: 'Dining Room', image: img('room-dining-room'), blurb: 'A table worth lingering at, with light and tableware to match.', slots: ['Furniture', 'Lighting', 'Everyday Objects'], budget: 180000 },
+  { id: 'living', tile: img('scene-living-navy-sectional'), name: 'Living Room', image: img('room-living-room'), blurb: 'Sofas, tables, lamps and rugs for the room you gather in.', slots: ['Furniture', 'Lighting', 'Everyday Objects', 'Planters'], budget: 250000 },
+  { id: 'bedroom', tile: img('scene-bedroom-organic-mirrors'), name: 'Bedroom', image: img('room-bedroom'), blurb: 'Quiet textures, soft light and a place to put things down.', slots: ['Furniture', 'Lighting', 'Everyday Objects'], budget: 120000 },
+  { id: 'dining', tile: img('scene-dining-gold-chandeliers'), name: 'Dining Room', image: img('room-dining-room'), blurb: 'A table worth lingering at, with light and tableware to match.', slots: ['Furniture', 'Lighting', 'Everyday Objects'], budget: 180000 },
   { id: 'office', name: 'Home Office', image: img('room-home-office'), blurb: 'A desk, a good chair and small things that keep it tidy.', slots: ['Furniture', 'Office Accessories', 'Lighting', 'Planters'], budget: 150000 },
 ];
 
