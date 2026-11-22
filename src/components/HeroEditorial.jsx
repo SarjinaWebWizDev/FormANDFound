@@ -67,17 +67,17 @@ export default function HeroEditorial() {
 
   return (
     <>
-      <section ref={root} onPointerMove={onMove} aria-label="Featured rooms" className="relative isolate flex min-h-[600px] sm:min-h-[680px] flex-col overflow-hidden bg-[#EADCC8] lg:h-[calc(100svh-4rem)] lg:max-h-[920px]">
+      <section ref={root} onPointerMove={onMove} aria-label="Featured rooms" className="relative isolate flex min-h-0 flex-col sm:min-h-[680px] overflow-hidden bg-espresso sm:bg-[#EADCC8] lg:h-[calc(100svh-4rem)] lg:max-h-[920px]">
         {/* image: clip-path reveal, slow zoom, scroll parallax */}
-        <motion.div aria-hidden style={{ y: reduced ? 0 : py }} className="absolute inset-x-0 -top-[20%] -z-10 h-[120%] [perspective:1200px]">
-          <motion.div className="absolute -inset-[4%]" style={{ rotateY: reduced ? 0 : rY, rotateX: reduced ? 0 : rX, x: reduced ? 0 : tX }}>
+        <motion.div aria-hidden style={{ y: reduced ? 0 : py }} className="absolute inset-x-0 -top-[20%] -z-10 h-[120%] [perspective:1200px] max-sm:top-0 max-sm:aspect-[3/2] max-sm:h-auto">
+          <motion.div className="absolute -inset-[4%] max-sm:inset-0" style={{ rotateY: reduced ? 0 : rY, rotateX: reduced ? 0 : rX, x: reduced ? 0 : tX }}>
             <AnimatePresence initial={false}>
               <motion.img key={scene.id} src={scene.src} alt="" decoding="async" fetchPriority={i === 0 ? 'high' : undefined} draggable={false} className="absolute inset-0 h-full w-full select-none object-cover" style={{ objectPosition: scene.pos }}
                 initial={reduced ? false : { opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ opacity: { duration: 1.2, ease: 'easeInOut' }, scale: { duration: 7, ease: 'linear' } }} />
             </AnimatePresence>
           </motion.div>
         </motion.div>
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-espresso/85 via-espresso/35 to-espresso/10 sm:bg-gradient-to-r sm:from-espresso/75 sm:via-espresso/30 sm:to-transparent" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-espresso/85 via-espresso/35 to-espresso/10 max-sm:bottom-auto max-sm:aspect-[3/2] max-sm:from-espresso/45 max-sm:via-transparent max-sm:to-transparent sm:bg-gradient-to-r sm:from-espresso/75 sm:via-espresso/30 sm:to-transparent" />
         <div aria-hidden className="sunbeam" /><div aria-hidden className="sunbeam sunbeam-b" />
         <div aria-hidden className="grain" />
         <div aria-hidden className="motes">{Array.from({ length: 14 }).map((_, n) => <span key={n} style={{ left: `${(n * 37 + 8) % 100}%`, animationDelay: `${(n * 1.7) % 11}s`, animationDuration: `${14 + (n % 5) * 3}s`, width: `${2 + (n % 3)}px`, height: `${2 + (n % 3)}px` }} />)}</div>
@@ -86,13 +86,13 @@ export default function HeroEditorial() {
           <div className="coin3d grid h-24 w-24 place-items-center rounded-full border border-gold/70 bg-moss/90 text-center text-ivory shadow-xl backdrop-blur sm:h-32 sm:w-32"><p className="font-display text-sm leading-tight sm:text-lg">Curated<br />for Modern<br />Living</p></div>
         </motion.div>
 
-        <div className="container-x relative flex flex-1 items-center py-10 sm:py-14">
+        <div className="container-x relative flex flex-1 items-center pb-8 pt-[calc(66.67vw+1.75rem)] sm:py-14">
           <motion.div className="max-w-2xl [transform-style:preserve-3d]" style={{ x: reduced ? 0 : textX, y: reduced ? 0 : textY }} aria-live="polite">
-            <h1 key={scene.id} className="text-[clamp(2.7rem,6vw,5.6rem)] leading-[1] tracking-tight text-ivory">
+            <h1 key={scene.id} className="text-[clamp(2.2rem,6vw,5.6rem)] leading-[1] tracking-tight text-ivory">
               <Words text={scene.title} delay={0} reduced={reduced} />
             </h1>
-            <motion.p key={`${scene.id}-l`} initial={reduced ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.25, ease }} className="mt-6 max-w-md text-base leading-relaxed text-ivory/90 sm:text-lg">{scene.line}</motion.p>
-            <motion.div key={`${scene.id}-c`} initial={reduced ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.35, ease }} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap [&>a]:w-full sm:[&>a]:w-auto">
+            <motion.p key={`${scene.id}-l`} initial={reduced ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.25, ease }} className="mt-3 max-w-md text-base leading-relaxed text-ivory/90 sm:mt-6 sm:text-lg">{scene.line}</motion.p>
+            <motion.div key={`${scene.id}-c`} initial={reduced ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.35, ease }} className="mt-5 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap [&>a]:w-full sm:[&>a]:w-auto">
               <Magnetic to={scene.to} className="btn-royal group">{scene.cta}<span className="chip"><ArrowRight size={15} /></span></Magnetic>
             </motion.div>
           </motion.div>

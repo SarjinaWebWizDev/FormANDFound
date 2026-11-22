@@ -18,7 +18,8 @@ export default function OfferPopup({ watch }) {
     has('complimentary-delivery') && { tag: 'Delivery', title: 'Complimentary delivery', sub: 'On orders above ₹10,000', to: '/shop', cta: 'Start shopping' },
     has('seasonal-edit') && { tag: 'Seasonal Edit', title: 'The Art of Living, Considered', sub: 'Pieces chosen for the season', to: '/collections', cta: 'Explore' },
   ].filter(Boolean);
-  const [i, setI] = useState(0); const [closed, setClosed] = useState(read); const [inView, setInView] = useState(true);
+  // On phones the card starts folded into the pill.
+  const [i, setI] = useState(0); const [closed, setClosed] = useState(() => read() || (typeof window !== 'undefined' && window.matchMedia('(max-width: 639px)').matches)); const [inView, setInView] = useState(true);
   const [paused, setPaused] = useState(false); const [copied, setCopied] = useState('');
   const [ready, setReady] = useState(false);
   useEffect(() => { const t = setTimeout(() => setReady(true), 1500); return () => clearTimeout(t); }, []);

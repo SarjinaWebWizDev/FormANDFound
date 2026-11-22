@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Heart, Menu, Minus, Plus, Scale, Search, ShoppingBag, X } from 'lucide-react';
 import Footer from './Footer';
+import { CursorRing, ScrollProgress } from './Fx';
 import CouponBox from './CouponBox';
 import SafeImage from './SafeImage';
 import { NAV } from '../data/site';
@@ -110,6 +111,7 @@ export default function Layout() {
             <ul className="mt-4 space-y-1 overflow-y-auto pb-10">{NAV.map((n) => <li key={n.label}><Link to={n.to} className="block py-2 font-display text-[clamp(1.9rem,8vw,2.6rem)]">{n.label}</Link></li>)}<li><Link to="/offers" className="block py-2 font-display text-[clamp(1.9rem,8vw,2.6rem)] text-cherry">Offers</Link></li></ul></div>
         </motion.div>)}</AnimatePresence>
       {search && <SearchOverlay onClose={() => setSearch(false)} />}
+      <ScrollProgress /><CursorRing />
       <main className="flex-1"><motion.div key={loc.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.45, ease: 'easeOut' }}><Outlet /></motion.div></main>
       <Footer />
       <CartDrawer /><CompareBar />
